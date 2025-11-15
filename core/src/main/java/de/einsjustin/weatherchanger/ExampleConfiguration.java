@@ -1,4 +1,4 @@
-package org.example.core;
+package de.einsjustin.weatherchanger;
 
 import net.labymod.api.addon.AddonConfig;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
