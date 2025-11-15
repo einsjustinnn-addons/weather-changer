@@ -27,7 +27,7 @@ labyMod {
         displayName = "weatherchanger"
         author = "EinsJustin"
         description = "Example Description"
-        minecraftVersion = "*"
+        minecraftVersion = "1.21.4"
         version = rootProject.version.toString()
     }
 }
