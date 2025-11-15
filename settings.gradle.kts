@@ -1,4 +1,4 @@
-rootProject.name = "weather-changer"
+rootProject.name = "weatherchanger"
 
 pluginManagement {
     val labyGradlePluginVersion = "0.5.9"

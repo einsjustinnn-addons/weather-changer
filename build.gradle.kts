@@ -24,7 +24,7 @@ labyMod {
 
     addonInfo {
         namespace = "weatherchanger"
-        displayName = "weatherchanger"
+        displayName = "WeatherChanger"
         author = "EinsJustin"
         description = "Example Description"
         minecraftVersion = "1.21.4"
