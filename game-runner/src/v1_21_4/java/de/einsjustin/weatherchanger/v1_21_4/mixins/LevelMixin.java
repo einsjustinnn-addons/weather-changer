@@ -47,7 +47,7 @@ public class LevelMixin {
       return;
     }
     if (weather == Weather.RAIN || weather == Weather.THUNDER || weather == Weather.SNOW) {
-      cir.setReturnValue(1.0F);
+      cir.setReturnValue(weatherchanger$getFrequency());
     }
   }
 
@@ -85,8 +85,17 @@ public class LevelMixin {
       return;
     }
     if (weather == Weather.THUNDER) {
-      cir.setReturnValue(1.0F);
+      cir.setReturnValue(weatherchanger$getFrequency());
     }
+  }
+
+  @Unique
+  private float weatherchanger$getFrequency() {
+    WeatherChangerConfiguration configuration = WeatherChangerAddon.INSTANCE.configuration();
+    if (!configuration.enabled().get()) {
+      return 1.0F;
+    }
+    return configuration.frequency().get();
   }
 
   @Unique

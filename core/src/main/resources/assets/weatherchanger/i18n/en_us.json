@@ -6,6 +6,9 @@
       },
       "weather": {
         "name": "Change Weather"
+      },
+      "frequency": {
+        "name": "Frequency (default: 1.0)"
       }
     }
   }
