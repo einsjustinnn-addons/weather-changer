@@ -11,7 +11,7 @@ import net.labymod.api.configuration.loader.property.ConfigProperty;
 @ConfigName("settings")
 public class WeatherChangerConfiguration extends AddonConfig {
 
-  @SwitchSetting
+  @SwitchSetting(hotkey = true)
   private final ConfigProperty<Boolean> enabled = new ConfigProperty<>(true);
 
   @DropdownSetting
