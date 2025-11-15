@@ -27,7 +27,7 @@ public class LevelMixin {
       cir.setReturnValue(false);
       return;
     }
-    if (weather == Weather.RAIN || weather == Weather.THUNDER) {
+    if (weather == Weather.RAIN || weather == Weather.THUNDER || weather == Weather.SNOW) {
       cir.setReturnValue(true);
     }
   }
@@ -46,7 +46,7 @@ public class LevelMixin {
       cir.setReturnValue(0.0F);
       return;
     }
-    if (weather == Weather.RAIN || weather == Weather.THUNDER) {
+    if (weather == Weather.RAIN || weather == Weather.THUNDER || weather == Weather.SNOW) {
       cir.setReturnValue(1.0F);
     }
   }
