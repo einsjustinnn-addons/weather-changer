@@ -10,6 +10,7 @@ public class WeatherChangerAddon extends LabyAddon<WeatherChangerConfiguration> 
 
   @Override
   protected void enable() {
+    // TODO: fix 1.8, 1.12, 1.16, 1.17
     INSTANCE = this;
     this.registerSettingCategory();
   }
