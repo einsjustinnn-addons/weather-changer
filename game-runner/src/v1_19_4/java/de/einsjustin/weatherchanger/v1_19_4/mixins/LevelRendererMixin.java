@@ -3,38 +3,30 @@ package de.einsjustin.weatherchanger.v1_19_4.mixins;
 import de.einsjustin.weatherchanger.WeatherChangerAddon;
 import de.einsjustin.weatherchanger.WeatherChangerConfiguration;
 import de.einsjustin.weatherchanger.api.Weather;
+import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biome.Precipitation;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(Biome.class)
-public abstract class BiomeMixin {
-
-  @Shadow
-  public abstract boolean coldEnoughToSnow(BlockPos par1);
+@Mixin(LevelRenderer.class)
+public class LevelRendererMixin {
 
   @Redirect(
-      method = "getPrecipitationAt",
-      at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/biome/Biome;coldEnoughToSnow(Lnet/minecraft/core/BlockPos;)Z")
+      method = "renderSnowAndRain",
+      at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/biome/Biome;getPrecipitationAt(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/biome/Biome$Precipitation;")
   )
-  private boolean redirectGetPrecipitationAt(Biome instance, BlockPos blockPos) {
+  private Precipitation redirect_renderSnowAndRain(Biome instance, BlockPos $$0) {
     WeatherChangerConfiguration configuration = WeatherChangerAddon.INSTANCE.configuration();
     if (!configuration.enabled().get()) {
-      return this.coldEnoughToSnow(blockPos);
+      return instance.getPrecipitationAt($$0);
     }
     Weather weather = configuration.weather().get();
-    if (weather == null) {
-      return this.coldEnoughToSnow(blockPos);
-    }
-    if (weather == Weather.CLEAR) {
-      return false;
-    }
     if (weather == Weather.SNOW) {
-      return true;
+      return Precipitation.SNOW;
     }
-    return this.coldEnoughToSnow(blockPos);
+    return null;
   }
 }

@@ -1,4 +1,4 @@
-package de.einsjustin.weatherchanger.v1_19_4.mixins;
+package de.einsjustin.weatherchanger.v1_21_11.mixins;
 
 import de.einsjustin.weatherchanger.WeatherChangerAddon;
 import de.einsjustin.weatherchanger.WeatherChangerConfiguration;

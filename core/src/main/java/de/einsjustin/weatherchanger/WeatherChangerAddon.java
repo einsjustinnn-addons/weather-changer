@@ -10,7 +10,10 @@ public class WeatherChangerAddon extends LabyAddon<WeatherChangerConfiguration> 
 
   @Override
   protected void enable() {
-    // TODO: fix 1.8, 1.12, 1.16, 1.17
+    /* TODO
+    1.8, 1.12 - snow the world and no snow effect
+    1.16, 1.17 - rain particle while snowing
+     */
     INSTANCE = this;
     this.registerSettingCategory();
   }

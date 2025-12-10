@@ -1,4 +1,4 @@
-package de.einsjustin.weatherchanger.v1_18_2.mixins;
+package de.einsjustin.weatherchanger.v1_16_5.mixins;
 
 import de.einsjustin.weatherchanger.WeatherChangerAddon;
 import de.einsjustin.weatherchanger.WeatherChangerConfiguration;
@@ -15,17 +15,17 @@ public class LevelRendererMixin {
 
   @Redirect(
       method = "renderSnowAndRain",
-      at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/biome/Biome;warmEnoughToRain(Lnet/minecraft/core/BlockPos;)Z")
+      at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/biome/Biome;getTemperature(Lnet/minecraft/core/BlockPos;)F")
   )
-  private boolean redirect_renderSnowAndRain(Biome instance, BlockPos blockPos) {
+  private float redirect_renderSnowAndRain(Biome instance, BlockPos blockPos) {
     WeatherChangerConfiguration configuration = WeatherChangerAddon.INSTANCE.configuration();
     if (!configuration.enabled().get()) {
-      return instance.warmEnoughToRain(blockPos);
+      return instance.getTemperature(blockPos);
     }
     Weather weather = configuration.weather().get();
     if (weather == Weather.SNOW) {
-      return false;
+      return 0.1F;
     }
-    return instance.warmEnoughToRain(blockPos);
+    return instance.getTemperature(blockPos);
   }
 }
